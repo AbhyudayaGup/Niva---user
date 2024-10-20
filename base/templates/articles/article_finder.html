@@ -1,0 +1,29 @@
+<!-- base/templates/articles/article_finder.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Finder</title>
+</head>
+<body>
+    <h1>Article Finder</h1>
+
+    <!-- Search form -->
+    <form method="GET" action="{% url 'article_finder' %}">
+        <input type="text" name="q" placeholder="Search articles...">
+        <button type="submit">Search</button>
+    </form>
+
+    <ul>
+    {% for article in articles %}
+        <li>
+            <a href="{{ article.link }}" target="_blank">{{ article.title }}</a>
+            <p>{{ article.description }}</p>
+        </li>
+    {% empty %}
+        <li>No articles found.</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
